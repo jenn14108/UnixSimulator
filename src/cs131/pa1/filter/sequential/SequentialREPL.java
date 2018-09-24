@@ -9,7 +9,6 @@ public class SequentialREPL {
 	public static void main(String[] args){
 		//set current working directory
 		currentWorkingDirectory = System.getProperty("user.dir");
-		//System.out.println(currentWorkingDirectory);
 		Scanner input = new Scanner(System.in);
 		System.out.print(Message.NEWCOMMAND.toString() + Message.WELCOME.toString());
 		System.out.print(Message.NEWCOMMAND.toString());
@@ -23,6 +22,9 @@ public class SequentialREPL {
 			
 			//Make a new sequential filter
 			List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
+//			for (SequentialFilter f : filters) {
+//				System.out.println(f);
+//			}
 			
 			//After completing current commands, ask for a new set of commands
 			System.out.print(Message.NEWCOMMAND.toString());
