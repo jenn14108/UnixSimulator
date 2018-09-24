@@ -2,7 +2,7 @@ package cs131.pa1.filter.sequential.filters;
 
 import cs131.pa1.filter.sequential.SequentialFilter;
 
-public class WcFilter extends SequentialFilter{
+public class RedirFilter extends SequentialFilter {
 
 	@Override
 	protected String processLine(String line) {

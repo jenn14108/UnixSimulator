@@ -1,5 +1,13 @@
 package cs131.pa1.filter.sequential.filters;
 
-public class LsFilter {
+import cs131.pa1.filter.sequential.SequentialFilter;
+
+public class LsFilter extends SequentialFilter{
+
+	@Override
+	protected String processLine(String line) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
