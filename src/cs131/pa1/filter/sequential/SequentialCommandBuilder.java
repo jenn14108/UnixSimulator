@@ -19,7 +19,8 @@ public class SequentialCommandBuilder {
 				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(c));
 				return null;
 			}
-			constructFilterFromSubCommand(inputStr);			
+			filters.add(constructFilterFromSubCommand(inputStr));	
+			linkFilters(filters);
 		}
 		return filters;
 	}
