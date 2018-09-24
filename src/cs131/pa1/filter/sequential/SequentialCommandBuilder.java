@@ -40,19 +40,19 @@ public class SequentialCommandBuilder {
 			case "cat":
 				return new CatFilter(subCommand);
 			case "cd":
-				return new CdFilter();
+				return new CdFilter(subCommand);
 			case "grep":
 				return new GrepFilter(subCommand);
 			case "ls":
 				return new LsFilter(subCommand);
 			case "pwd":
-				return new PwdFilter();
+				return new PwdFilter(subCommand);
 			case "redir":
 				return new RedirFilter();
 			case "uniq":
 				return new UniqFilter();
 			case "wc":
-				return new WcFilter();
+				return new WcFilter(subCommand);
 		}		
 		return null;
 	}
