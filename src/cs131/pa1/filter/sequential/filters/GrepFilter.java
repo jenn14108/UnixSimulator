@@ -30,7 +30,7 @@ public class GrepFilter extends SequentialFilter{
 	 * This method overrides process() to print out the appropriate 
 	 * error message if there is no input. 
 	 */
-	protected void process() {
+	public void process() {
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
 		}
