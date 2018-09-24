@@ -33,9 +33,5 @@ public class SequentialREPL {
 		//user commands to exit shell 
 		input.close();
 		System.out.println(Message.GOODBYE.toString());
-<<<<<<< HEAD
-=======
-
->>>>>>> 9d0e89df19e0f1b5bcb8114f9dcfcdd9b8e5bd55
 	}
 }
