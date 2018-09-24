@@ -1,5 +1,13 @@
 package cs131.pa1.filter.sequential.filters;
 
-public class GrepFilter {
+import cs131.pa1.filter.sequential.SequentialFilter;
+
+public class GrepFilter extends SequentialFilter{
+
+	@Override
+	protected String processLine(String line) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
