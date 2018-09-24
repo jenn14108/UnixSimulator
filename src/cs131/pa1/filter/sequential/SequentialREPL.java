@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SequentialREPL {
 
-	static String currentWorkingDirectory;
+	public static String currentWorkingDirectory;
 
 	public static void main(String[] args){
 		//set current working directory

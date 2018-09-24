@@ -1,12 +1,35 @@
 package cs131.pa1.filter.sequential.filters;
 
-import cs131.pa1.filter.sequential.SequentialFilter;
+import java.io.File;
+
+import cs131.pa1.filter.*;
+import cs131.pa1.filter.sequential.*;
 
 public class LsFilter extends SequentialFilter{
+	private String[] components; 
+	
+	public LsFilter(String subCommand) {
+		components = subCommand.split(" "); 
+		
+	}
+	
+	
+	@Override
+	public void process(){
+		if(prev != null) {
+			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(components[0]));
+			return; 
+		}
+		
+		File files = new File(SequentialREPL.currentWorkingDirectory);
+		for(String file: files.list()) {
+			output.add(file);
+		}	
+	}
 
+	
 	@Override
 	protected String processLine(String line) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

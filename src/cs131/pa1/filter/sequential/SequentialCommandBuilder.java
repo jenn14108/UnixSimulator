@@ -44,7 +44,7 @@ public class SequentialCommandBuilder {
 			case "grep":
 				return new GrepFilter(subCommand);
 			case "ls":
-				return new LsFilter();
+				return new LsFilter(subCommand);
 			case "pwd":
 				return new PwdFilter();
 			case "redir":

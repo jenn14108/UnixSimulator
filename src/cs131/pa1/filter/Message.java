@@ -11,8 +11,7 @@ public enum Message {
     CANNOT_HAVE_OUTPUT("The command [%s] cannot have an output.\n"),
     REQUIRES_PARAMETER("The command [%s] requires parameter(s).\n"),
     INVALID_PARAMETER("The parameter for command [%s] is invalid.\n"),
-    CANNOT_HAVE_INPUT("The command [%s] cannot have an input.\n")
-    ;
+    CANNOT_HAVE_INPUT("The command [%s] cannot have an input.\n");
     private final String message;
     
     private Message(String message){
