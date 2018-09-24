@@ -34,14 +34,15 @@ public class SequentialCommandBuilder {
 	}
 	
 	private static SequentialFilter constructFilterFromSubCommand (String subCommand){
+		String[] commandAndParam = subCommand.split(" ");
 		
-		switch(subCommand) {
+		switch(commandAndParam[0]) {
 			case "cat":
 				return new CatFilter();
 			case "cd":
 				return new CdFilter();
 			case "grep":
-				return new GrepFilter();
+				return new GrepFilter(subCommand);
 			case "ls":
 				return new LsFilter();
 			case "pwd":
