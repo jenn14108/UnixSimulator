@@ -22,15 +22,24 @@ public class SequentialREPL {
 			
 			//Make a new sequential filter
 			List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
-//			for (SequentialFilter f : filters) {
-//				System.out.println(f);
-//			}
+			
+			for (SequentialFilter filter : filters) {
+				filter.process();
+			}
+			Queue<String> outputs = filters.get(filters.size()-1).output;
+			
+			if(outputs != null) {
+				for (String output: outputs) {
+					System.out.println(output);
+				}
+			}
 			
 			//After completing current commands, ask for a new set of commands
 			System.out.print(Message.NEWCOMMAND.toString());
 			commands = input.nextLine();
-
+			
 		}
+		
 		
 		//user commands to exit shell 
 		input.close();

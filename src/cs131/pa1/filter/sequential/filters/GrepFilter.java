@@ -1,4 +1,6 @@
 package cs131.pa1.filter.sequential.filters;
+import java.util.LinkedList;
+
 import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
@@ -16,6 +18,8 @@ public class GrepFilter extends SequentialFilter{
 	 * appropriate search term
 	 */
 	public GrepFilter(String searchTerm) {
+		output = new LinkedList<>();
+		input = new LinkedList<>();
 		String[] splitCommandAndParam = searchTerm.split(" ");
 		this.name = splitCommandAndParam[0];
 		if (splitCommandAndParam.length == 1) {

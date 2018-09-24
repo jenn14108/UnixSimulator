@@ -1,16 +1,18 @@
 package cs131.pa1.filter.sequential.filters;
 
 import java.io.File;
+import java.util.LinkedList;
 
 import cs131.pa1.filter.*;
 import cs131.pa1.filter.sequential.*;
+
 
 public class LsFilter extends SequentialFilter{
 	private String[] components; 
 	
 	public LsFilter(String subCommand) {
 		components = subCommand.split(" "); 
-		
+		output = new LinkedList<>();
 	}
 	
 	
