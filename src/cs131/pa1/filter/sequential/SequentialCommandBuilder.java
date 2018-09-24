@@ -1,20 +1,12 @@
 package cs131.pa1.filter.sequential;
 import cs131.pa1.filter.Message;
-
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-=======
 import java.util.*;
-
-
 import cs131.pa1.filter.sequential.filters.*;
->>>>>>> 9d0e89df19e0f1b5bcb8114f9dcfcdd9b8e5bd55
+
 
 public class SequentialCommandBuilder {
 	
 	public static List<SequentialFilter> createFiltersFromCommand(String command){
-<<<<<<< HEAD
 		List<SequentialFilter> filters = new ArrayList<>();
 		String[] commandSplit = command.split("\\|");
 		for (String inputStr : commandSplit) {
@@ -30,10 +22,6 @@ public class SequentialCommandBuilder {
 			constructFilterFromSubCommand(inputStr);			
 		}
 		return filters;
-
-=======
-		List
->>>>>>> 9d0e89df19e0f1b5bcb8114f9dcfcdd9b8e5bd55
 	}
 	
 	private static SequentialFilter determineFinalFilter(String command){
