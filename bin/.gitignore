@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 /cs131/
+=======
+.DS_Store
+.metadata
+.classpath
+.project
+>>>>>>> origin/master
