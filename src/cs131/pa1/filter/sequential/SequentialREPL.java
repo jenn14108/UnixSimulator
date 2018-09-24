@@ -21,9 +21,8 @@ public class SequentialREPL {
 		//shell runs until user command equates to "exit" 
 		while (!commands.equals("exit")) {
 			
-			//1. make a new sequential filter
-			//2. ensure commands are VALID (else, print error message) in order to continue
-			//3. If valid, move on to the different filters that operates specific commands 
+			//Make a new sequential filter
+			List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
 			
 			//After completing current commands, ask for a new set of commands
 			System.out.print(Message.NEWCOMMAND.toString());
@@ -34,16 +33,5 @@ public class SequentialREPL {
 		//user commands to exit shell 
 		input.close();
 		System.out.println(Message.GOODBYE.toString());
-		
-		
-		
-		
-		
-		
-
-		
-		
-
 	}
-
 }
