@@ -17,10 +17,10 @@ public class GrepFilter extends SequentialFilter{
 	 * Initializes a new instance of the grep filter with the 
 	 * appropriate search term
 	 */
-	public GrepFilter(String searchTerm) {
+	public GrepFilter(String commandAndParam) {
 		output = new LinkedList<>();
 		input = new LinkedList<>();
-		String[] splitCommandAndParam = searchTerm.split(" ");
+		String[] splitCommandAndParam = commandAndParam.split(" ");
 		this.name = splitCommandAndParam[0];
 		if (splitCommandAndParam.length == 1) {
 			this.searchTerm = null;
