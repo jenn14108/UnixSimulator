@@ -34,15 +34,6 @@ public class SequentialREPL {
 		//user commands to exit shell 
 		input.close();
 		System.out.println(Message.GOODBYE.toString());
-		
-		
-		
-		
-		
-		
-
-		
-		
 
 	}
 
