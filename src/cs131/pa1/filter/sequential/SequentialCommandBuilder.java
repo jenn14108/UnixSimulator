@@ -38,7 +38,7 @@ public class SequentialCommandBuilder {
 		
 		switch(commandAndParam[0]) {
 			case "cat":
-				return new CatFilter();
+				return new CatFilter(subCommand);
 			case "cd":
 				return new CdFilter();
 			case "grep":

@@ -37,9 +37,10 @@ public class GrepFilter extends SequentialFilter{
 	public void process() {
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
+		} else {
+			//proceed with the process method
+			super.process();
 		}
-		//proceed with the process method
-		super.process();
 	}
 	
 	

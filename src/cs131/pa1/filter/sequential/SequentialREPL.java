@@ -19,18 +19,21 @@ public class SequentialREPL {
 		
 		//shell runs until user command equates to "exit" 
 		while (!commands.equals("exit")) {
-			
-			//Make a new sequential filter
-			List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
-			
-			for (SequentialFilter filter : filters) {
-				filter.process();
-			}
-			Queue<String> outputs = filters.get(filters.size()-1).output;
-			
-			if(outputs != null) {
-				for (String output: outputs) {
-					System.out.println(output);
+			if (!commands.equals("")) {
+				//Make a new sequential filter
+				List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
+				
+				if (filters != null) {
+					for (SequentialFilter filter : filters) {
+						filter.process();
+					}
+					Queue<String> outputs = filters.get(filters.size()-1).output;
+						
+					if (outputs != null) {
+						for (String output: outputs) {
+							System.out.print(output);
+						}
+					}
 				}
 			}
 			
