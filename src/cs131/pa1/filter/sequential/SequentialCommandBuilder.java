@@ -48,7 +48,7 @@ public class SequentialCommandBuilder {
 			case "pwd":
 				return new PwdFilter(subCommand);
 			case "redir":
-				return new RedirFilter();
+				return new RedirFilter(subCommand);
 			case "uniq":
 				return new UniqFilter();
 			case "wc":

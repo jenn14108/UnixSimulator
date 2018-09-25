@@ -31,7 +31,7 @@ public class SequentialREPL {
 						
 					if (outputs != null) {
 						for (String output: outputs) {
-							System.out.print(output);
+							System.out.println(output);
 						}
 					}
 				}
