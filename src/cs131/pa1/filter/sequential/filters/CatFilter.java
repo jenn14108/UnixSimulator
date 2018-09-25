@@ -54,7 +54,6 @@ public class CatFilter extends SequentialFilter {
 					output.add(line);
 				}
 				fileScanner.close();
-				output.add("------------");
 			}
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();

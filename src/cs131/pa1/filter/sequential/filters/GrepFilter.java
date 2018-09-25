@@ -1,5 +1,5 @@
 package cs131.pa1.filter.sequential.filters;
-import java.util.LinkedList;
+import java.util.*;
 
 import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.SequentialFilter;
