@@ -1,5 +1,5 @@
 package cs131.pa1.filter.sequential.filters;
-import java.util.LinkedList;
+import java.util.*;
 
 import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.SequentialFilter;
@@ -37,8 +37,9 @@ public class GrepFilter extends SequentialFilter{
 	public void process() {
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
+		} else if (this.searchTerm == null) {
+			System.out.println(Message.REQUIRES_PARAMETER.with_parameter(this.name));
 		} else {
-			//proceed with the process method
 			super.process();
 		}
 	}
@@ -46,10 +47,6 @@ public class GrepFilter extends SequentialFilter{
 	
 	@Override
 	protected String processLine(String line) {
-		if (this.searchTerm == null) {
-			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.name));
-			return null;
-		} 
 		//if input line contains the searchterm - return the line
 		if (line.contains(this.searchTerm)) {
 			return line;

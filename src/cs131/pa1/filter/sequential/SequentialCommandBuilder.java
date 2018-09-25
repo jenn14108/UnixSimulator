@@ -5,7 +5,7 @@ import cs131.pa1.filter.sequential.filters.*;
 
 
 public class SequentialCommandBuilder {
-	
+
 	public static List<SequentialFilter> createFiltersFromCommand(String command){
 		List<SequentialFilter> filters = new ArrayList<>();
 		String[] commandSplit = command.split("\\|");
@@ -19,23 +19,23 @@ public class SequentialCommandBuilder {
 				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(c));
 				return null;
 			}
-			filters.add(constructFilterFromSubCommand(inputStr));	
+			filters.add(constructFilterFromSubCommand(inputStr));
 			linkFilters(filters);
 		}
 		return filters;
 	}
-	
+
 	private static SequentialFilter determineFinalFilter(String command){
 		return null;
 	}
-	
+
 	private static String adjustCommandToRemoveFinalFilter(String command){
 		return null;
 	}
-	
+
 	private static SequentialFilter constructFilterFromSubCommand (String subCommand){
 		String[] commandAndParam = subCommand.split(" ");
-		
+
 		switch(commandAndParam[0]) {
 			case "cat":
 				return new CatFilter(subCommand);
@@ -53,21 +53,21 @@ public class SequentialCommandBuilder {
 				return new UniqFilter(subCommand);
 			case "wc":
 				return new WcFilter(subCommand);
-		}		
+		}
 		return null;
 	}
 
 	private static void linkFilters(List<SequentialFilter> filters){
 		Iterator<SequentialFilter> iterator = filters.iterator();
 		SequentialFilter prev = null;
-		
+
 		if(iterator.hasNext()) {
 			prev = iterator.next();
 			while(iterator.hasNext()) {
 				SequentialFilter curr = iterator.next();
 				if (prev != null) prev.setNextFilter(curr);
 				if (curr != null) curr.setPrevFilter(prev);
-				prev = curr; 
+				prev = curr;
 			}
 		}
 	}

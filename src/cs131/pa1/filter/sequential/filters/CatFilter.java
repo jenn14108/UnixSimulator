@@ -34,12 +34,18 @@ public class CatFilter extends SequentialFilter {
 		} 
 		
 		for (String f : files) {
+<<<<<<< HEAD
 			if (!f.contains(".txt"
 					+ "")) {
 				System.out.print(Message.INVALID_PARAMETER.with_parameter(this.name));
 			} else {
+=======
+//			if (!f.contains(".txt")) {
+//				System.out.print(Message.INVALID_PARAMETER.with_parameter(this.name));
+//			} else {
+>>>>>>> origin/master
 				writeFileToOutput(f);
-			}
+//			}
 		}
 	}
 
@@ -55,7 +61,6 @@ public class CatFilter extends SequentialFilter {
 					output.add(line);
 				}
 				fileScanner.close();
-				output.add("------------");
 			}
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
