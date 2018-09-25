@@ -22,7 +22,6 @@ public class PwdFilter extends SequentialFilter{
 			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(this.name));
 			return; 
 		}
-		
 		output.add(SequentialREPL.currentWorkingDirectory);
 	}
 

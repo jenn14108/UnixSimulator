@@ -27,7 +27,7 @@ public class WcFilter extends SequentialFilter{
 			return;
 		}
 		super.process();
-		output.add(this.lines + " " + this.words + " " + this.characters);
+		output.add("     " + this.lines + "   " + this.words + "   " + this.characters);
 	}
 	
 	@Override

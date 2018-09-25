@@ -34,7 +34,8 @@ public class CatFilter extends SequentialFilter {
 		} 
 		
 		for (String f : files) {
-			if (!f.contains(".txt")) {
+			if (!f.contains(".txt"
+					+ "")) {
 				System.out.print(Message.INVALID_PARAMETER.with_parameter(this.name));
 			} else {
 				writeFileToOutput(f);
