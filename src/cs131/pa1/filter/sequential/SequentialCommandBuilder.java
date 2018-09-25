@@ -50,7 +50,7 @@ public class SequentialCommandBuilder {
 			case "redir":
 				return new RedirFilter(subCommand);
 			case "uniq":
-				return new UniqFilter();
+				return new UniqFilter(subCommand);
 			case "wc":
 				return new WcFilter(subCommand);
 		}
