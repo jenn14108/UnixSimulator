@@ -21,8 +21,7 @@ public class CdFilter extends SequentialFilter {
 	private String newDirc;
 	private String currDirc = SequentialREPL.currentWorkingDirectory;
 
-	private String directory;
-
+	
 	public CdFilter(String subCommand) {
 		this.components = subCommand.split(" ");	
 		this.name = components[0];
@@ -36,14 +35,6 @@ public class CdFilter extends SequentialFilter {
 			return; 
 		} else if (prev != null) {
 			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(name));
-			return; 
-		}
-
-		if(prev != null) {
-			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(name));
-			return; 
-		} else if (next != null) {
-			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(name));
 			return; 
 		} else if (components.length < 2) {
 			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(name));
@@ -62,8 +53,9 @@ public class CdFilter extends SequentialFilter {
 			}
 			return;
 		}
+		
 		currDirc += Filter.FILE_SEPARATOR + newDirc; 
-		File dirc = new File(newDirc);
+		File dirc = new File(currDirc);
 		
 		if (!dirc.isDirectory()) {
 			System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(newDirc));
@@ -73,7 +65,6 @@ public class CdFilter extends SequentialFilter {
 	}
 	
 
-	
 	@Override
 	protected String processLine(String line) {
 		return null;
