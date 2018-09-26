@@ -59,11 +59,11 @@ public class CdFilter extends SequentialFilter {
 		
 		if (!dirc.isDirectory()) {
 			System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(newDirc));
-		} else {
-			SequentialREPL.currentWorkingDirectory = dirc.getAbsolutePath();
+			return;
 		}
+		SequentialREPL.currentWorkingDirectory = dirc.getAbsolutePath();
 	}
-	
+
 
 	@Override
 	protected String processLine(String line) {
