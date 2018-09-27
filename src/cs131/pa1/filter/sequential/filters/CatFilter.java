@@ -10,10 +10,12 @@ public class CatFilter extends SequentialFilter {
 	
 	private static String name;
 	private static String[] files;
+	private static String subCommand;
 	
 	public CatFilter(String commandAndParam) {
 		input = new LinkedList<>();
 		output = new LinkedList<>();
+		subCommand = commandAndParam;
 		String[] splitCommandAndParam = commandAndParam.split(" ");
 		this.name = splitCommandAndParam[0];
 		files = new String[splitCommandAndParam.length -1];
@@ -27,14 +29,14 @@ public class CatFilter extends SequentialFilter {
 	public void process() {
 		//if there is input, which there shouldn't be, throw error
 		if (!input.isEmpty()) {
-			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(this.name));
+			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(subCommand));
 		//if there are no parameters, throw error
 		} else if (files.length == 0) {
-			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.name));
-		} 
-		
-		for (String f : files) {
-			writeFileToOutput(f);
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(subCommand));
+		} else {
+			for (String f : files) {
+				writeFileToOutput(f);
+			}
 		}
 	}
 
@@ -42,7 +44,7 @@ public class CatFilter extends SequentialFilter {
 		try {
 			File file = new File(f);
 			if (!file.exists()) {
-				output.add(Message.FILE_NOT_FOUND.with_parameter(this.name));
+				output.add(Message.FILE_NOT_FOUND.with_parameter(subCommand));
 			} else {
 				Scanner fileScanner = new Scanner(file);
 				while (fileScanner.hasNextLine()) {

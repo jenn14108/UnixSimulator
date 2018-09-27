@@ -22,12 +22,11 @@ public class RedirFilter extends SequentialFilter {
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
 		} else if (components.length < 2) {
-			System.out.println(Message.REQUIRES_PARAMETER.with_parameter(this.name));
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.name));
 		} else {
 			newFileName = components[1];
-			PrintStream out;
 			try {
-				out = new PrintStream(new File(newFileName));
+				PrintStream out = new PrintStream(new File(newFileName));
 				writeToOutPut(out);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -37,6 +36,7 @@ public class RedirFilter extends SequentialFilter {
 	
 	private void writeToOutPut(PrintStream out) {
 		for(String line: input) {
+			System.out.println(line);
 			out.println(line);
 		}
 	}

@@ -20,24 +20,25 @@ public class CdFilter extends SequentialFilter {
 	private String name;
 	private String newDirc;
 	private String currDirc = SequentialREPL.currentWorkingDirectory;
-
+	private String subCommand;
 	
 	public CdFilter(String subCommand) {
 		this.components = subCommand.split(" ");	
 		this.name = components[0];
+		this.subCommand = subCommand;
 	}
 	
 	@Override
 	public void process() {
 
 		if(next != null) {
-			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(name));
+			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(subCommand));
 			return; 
 		} else if (prev != null) {
-			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(name));
+			System.out.print(Message.CANNOT_HAVE_INPUT.with_parameter(subCommand));
 			return; 
 		} else if (components.length < 2) {
-			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(name));
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(subCommand));
 			return; 
 		}
 

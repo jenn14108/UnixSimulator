@@ -10,7 +10,7 @@ public class SequentialREPL {
 		//set current working directory
 		currentWorkingDirectory = System.getProperty("user.dir");
 		Scanner input = new Scanner(System.in);
-		System.out.print(Message.NEWCOMMAND.toString() + Message.WELCOME.toString());
+		System.out.print(Message.WELCOME.toString());
 		System.out.print(Message.NEWCOMMAND.toString());
 		
 		//obtain user commands
@@ -45,6 +45,6 @@ public class SequentialREPL {
 		
 		//user commands to exit shell 
 		input.close();
-		System.out.println(Message.GOODBYE.toString());
+		System.out.print(Message.GOODBYE.toString());
 	}
 }

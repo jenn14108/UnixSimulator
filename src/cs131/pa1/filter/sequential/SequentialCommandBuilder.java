@@ -8,6 +8,11 @@ public class SequentialCommandBuilder {
 
 	public static List<SequentialFilter> createFiltersFromCommand(String command){
 		List<SequentialFilter> filters = new ArrayList<>();
+		SequentialFilter redFilter = null; 
+		if (command.contains(">")) {
+			String redir = determineRedirectFilter(command);
+			redFilter = removeRedirectFilter(command, redir);
+		}
 		String[] commandSplit = command.split("\\|");
 		for (String inputStr : commandSplit) {
 			inputStr = inputStr.trim();
@@ -15,23 +20,28 @@ public class SequentialCommandBuilder {
 			String c = actualCommand[0];
 			if (!(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
 					c.equals("cat") || c.equals("grep") || c.equals("wc") ||
-					c.equals("uniq") || c.equals(">"))){
-				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(c));
+					c.equals("uniq"))){
+				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(inputStr));
 				return null;
 			}
 			filters.add(constructFilterFromSubCommand(inputStr));
-			linkFilters(filters);
 		}
+		if (redFilter != null) {
+			filters.add(redFilter);
+		}
+		linkFilters(filters);
 		return filters;
 	}
-
-	private static SequentialFilter determineFinalFilter(String command){
-		return null;
+	
+	private static String determineRedirectFilter(String command){
+		return command.substring(command.lastIndexOf(">"), command.length());
 	}
 
-	private static String adjustCommandToRemoveFinalFilter(String command){
-		return null;
+	private static SequentialFilter removeRedirectFilter(String command, String redir){
+		command = command.substring(0, command.lastIndexOf(">"));
+		return new RedirFilter(redir);
 	}
+
 
 	private static SequentialFilter constructFilterFromSubCommand (String subCommand){
 		String[] commandAndParam = subCommand.split(" ");
