@@ -8,9 +8,9 @@ import java.io.*;
 
 public class CatFilter extends SequentialFilter {
 	
-	private static String name;
-	private static String[] files;
-	private static String subCommand;
+	private String name;
+	private String[] files;
+	private String subCommand;
 	
 	public CatFilter(String commandAndParam) {
 		input = new LinkedList<>();

@@ -10,8 +10,8 @@ import cs131.pa1.filter.sequential.SequentialFilter;
  */
 public class GrepFilter extends SequentialFilter{
 	
-	private static String name;
-	private static String searchTerm;
+	private String name;
+	private String searchTerm;
 	
 	/*
 	 * Initializes a new instance of the grep filter with the 

@@ -7,7 +7,7 @@ import cs131.pa1.filter.sequential.SequentialFilter;
 
 public class RedirFilter extends SequentialFilter {
 	private String[] components;
-	private static String name;
+	private String name;
 	private String newFileName;
 
 	public RedirFilter(String subCommand) {

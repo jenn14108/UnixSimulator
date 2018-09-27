@@ -2,6 +2,14 @@ At least one of the files in the command [cat ascii.txt > ascii10.txt] was not f
 
 At least one of the files in the command [cat ascii.txt > ascii10.txt] was not found.
 
+At least one of the files in the command [cat ascii.txt > ascii10.txt] was not found.
+
+At least one of the files in the command [cat ascii.txt > ascii10.txt] was not found.
+
+At least one of the files in the command [cat ascii.txt > ascii10.txt] was not found.
+
+At least one of the files in the command [cat ascii.txt > ascii10.txt] was not found.
+
  
 !
 "

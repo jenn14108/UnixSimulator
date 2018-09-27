@@ -6,8 +6,8 @@ import java.util.*;
 
 public class UniqFilter extends SequentialFilter{
 	
-	private static String name;
-	private static Boolean isValid;
+	private String name;
+	private Boolean isValid;
 	TreeSet<String> checker = new TreeSet<>();
 
 	
