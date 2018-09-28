@@ -7,12 +7,15 @@ import cs131.pa1.filter.*;
 import cs131.pa1.filter.sequential.*;
 
 /**
- * @author Julia
  * This class extends the ModifiedSequentialFilter class and implements the Ls Command
  * Ls Filter pipes the contents of the current working directory to the output message queue
  */
 public class LsFilter extends ModifiedSequentialFilter{
 	
+	/**
+	 * This is the Constructor of the LsFilter
+	 * @param subCommand takes in the command name String
+	 */
 	public LsFilter(String subCommand) {
 		components = subCommand.split(" "); 
 		output = new LinkedList<>();

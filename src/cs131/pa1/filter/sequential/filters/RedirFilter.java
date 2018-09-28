@@ -10,7 +10,7 @@ import cs131.pa1.filter.sequential.SequentialREPL;
 public class RedirFilter extends ModifiedSequentialFilter {
 	
 	private String newFileName;
-
+	
 	public RedirFilter(String subCommand) {
 		components = subCommand.split(" ");
 		input = new LinkedList<>();

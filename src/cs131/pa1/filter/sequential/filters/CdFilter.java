@@ -14,7 +14,6 @@ import cs131.pa1.filter.sequential.SequentialFilter;
 import cs131.pa1.filter.sequential.SequentialREPL;
 
 /**
- * @author Julia
  * 	This class extends the ModifiedSequentialFilter class and implements the Cd Command
  */
 public class CdFilter extends ModifiedSequentialFilter {
@@ -22,6 +21,10 @@ public class CdFilter extends ModifiedSequentialFilter {
 	private String newDirc; //stores String of new directory
 	private String currDirc = SequentialREPL.currentWorkingDirectory;
 	
+	/**
+	 * This is the Constructor of the CdFilter
+	 * @param subCommand takes in the command name and the parameter String
+	 */
 	public CdFilter(String subCommand) {
 		this.components = subCommand.split(" ");	
 		this.subCommand = subCommand;
