@@ -24,19 +24,23 @@ public class SequentialCommandBuilder {
 				inputStr = inputStr.trim();
 				String[] actualCommand = inputStr.split(" ");
 				String c = actualCommand[0];
+				//If none of the valid commands are matched to what was entered by the user - throw error
 				if (c.length() != 0 && !(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
 						c.equals("cat") || c.equals("grep") || c.equals("wc") ||
 						c.equals("uniq"))){
 					System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(inputStr));
 					return null;
 				}
+				//otherwise, add to the list of filters
 				filters.add(constructFilterFromSubCommand(inputStr));
 			}
 		}
 		
+		//If redirect filter exists, add to the end of the chain of filters
 		if (redFilter != null) {
 			filters.add(redFilter);
 		}
+		//link all filters together and return 
 		linkFilters(filters);
 		return filters;
 	}
