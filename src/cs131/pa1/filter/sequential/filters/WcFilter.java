@@ -6,6 +6,11 @@ import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
+/**
+ * @author Julia
+ * This class extends the ModifiedSequentialFilter class and implements the Wc Command
+ * It reads lines from piped input and output the number of lines, words and characters, separated with space
+ */
 public class WcFilter extends ModifiedSequentialFilter{
 	private int lines;
 	private int words;
@@ -25,10 +30,13 @@ public class WcFilter extends ModifiedSequentialFilter{
 	}
 	
 	/**
-	 * process first checks for any errors. If no error, then continue
+	 * This method processes the information stored in the Wc Filter, throws errors or 
+	 * adds the number of lines, words and characters from input into output
 	 */
 	@Override
 	public void process() {
+		
+		//checks if the input Queue is empty
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.components[0]));
 			return;
@@ -44,8 +52,7 @@ public class WcFilter extends ModifiedSequentialFilter{
 	}
 	
 	/**
-	 * processLine computes the number of lines, words,
-	 * and characters in a file 
+	 * processLine computes the number of lines, words and characters in a passed in String 
 	 */
 	@Override
 	protected String processLine(String line) {

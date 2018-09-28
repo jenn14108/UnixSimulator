@@ -13,7 +13,10 @@ import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.SequentialFilter;
 import cs131.pa1.filter.sequential.SequentialREPL;
 
-
+/**
+ * @author Julia
+ * 	This class extends the ModifiedSequentialFilter class and implements the Cd Command
+ */
 public class CdFilter extends ModifiedSequentialFilter {
 	
 	private String newDirc; //stores String of new directory
@@ -25,6 +28,11 @@ public class CdFilter extends ModifiedSequentialFilter {
 		cont = false;
 	}
 	
+	/**
+	 * This method processes the information stores in the Cd Filter and 
+	 * determines which directory the user would like to change to. The new
+	 * directory would be added to the path of the current directory
+	 */
 	@Override
 	public void process() {
 		
