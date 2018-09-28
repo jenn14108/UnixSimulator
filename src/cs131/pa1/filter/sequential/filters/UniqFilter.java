@@ -6,7 +6,7 @@ import cs131.pa1.filter.sequential.SequentialFilter;
 import java.util.*;
 
 public class UniqFilter extends ModifiedSequentialFilter{
-	private String searchTerm;
+
 	private TreeSet<String> checker = new TreeSet<>();
 	
 	/*
@@ -17,12 +17,6 @@ public class UniqFilter extends ModifiedSequentialFilter{
 		input = new LinkedList<>();
 		cont = false;
 		components = commandAndParam.split(" ");
-
-		if (components.length > 1) {
-			this.searchTerm = null;
-		} else {
-			this.searchTerm = components[1];
-		}
 	}
 	
 	@Override
@@ -30,8 +24,6 @@ public class UniqFilter extends ModifiedSequentialFilter{
 		
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0]));
-		} else if (this.searchTerm == null) {
-			System.out.print(Message.INVALID_PARAMETER.with_parameter(components[0]));
 		} else {
 			//proceed with the process method
 			super.process();
