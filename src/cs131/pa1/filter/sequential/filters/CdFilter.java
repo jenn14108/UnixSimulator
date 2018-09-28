@@ -15,6 +15,7 @@ import cs131.pa1.filter.sequential.SequentialREPL;
 
 /**
  * 	This class extends the ModifiedSequentialFilter class and implements the Cd Command
+ *  It changes to another directory relative to the current directory
  */
 public class CdFilter extends ModifiedSequentialFilter {
 	
