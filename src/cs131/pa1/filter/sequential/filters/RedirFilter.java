@@ -1,5 +1,6 @@
 package cs131.pa1.filter.sequential.filters;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.io.*;
 import cs131.pa1.filter.Message;
@@ -19,7 +20,7 @@ public class RedirFilter extends ModifiedSequentialFilter {
 	@Override
 	public void process() {
 		if (input == null || input.isEmpty()) {
-			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0]));
+			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0] + " " + components[1]));
 			return;
 		} else if (components.length < 2) {
 			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(components[0]));
@@ -42,7 +43,8 @@ public class RedirFilter extends ModifiedSequentialFilter {
 	
 	private void writeToOutPut(FileWriter out) throws IOException {
 		for(String line: input) {
-			out.write(line);
+			out.write(line + "\n");
+
 		}
 	}
 	
