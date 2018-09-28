@@ -11,6 +11,7 @@ public class SequentialCommandBuilder {
 		List<ModifiedSequentialFilter> filters = new ArrayList<>();
 		ModifiedSequentialFilter redFilter = null; 
 		
+		//handle redirect separately from other commands
 		if (command.contains(">")) {
 			String redir = determineRedirectFilter(command);
 			command = removeRedirectFilter(command);
@@ -40,19 +41,42 @@ public class SequentialCommandBuilder {
 		return filters;
 	}
 	
+	/**
+	 * This method determines the chunk of string that contains 
+	 * the command and parameters for redirect
+	 * @param the full command string typed in by the user
+	 * @return the string that contains the command and parameters
+	 * for redirect
+	 */
 	private static String determineRedirectFilter(String command){
 		return command.substring(command.lastIndexOf(">"), command.length());
 	}
 
+	/**
+	 * This method returns the new command string from the user 
+	 * with the redirect command and parameters removed
+	 * @param the full command string typed in by the user
+	 * @return new command string for other filters 
+	 */
 	private static String removeRedirectFilter(String command){
 		return command.substring(0, command.lastIndexOf(">"));
 	}
 	
+	/**
+	 * This method creates a filter from the redirect command string
+	 * @param string that contains redirect command and parameter
+	 * @return a redirect filter
+	 */
 	private static ModifiedSequentialFilter createRedirectFilter(String redir) {
 		return new RedirFilter(redir);
 	}
 
-
+	/**
+	 * this methods determines with filter to create based on 
+	 * the user command(s)
+	 * @param subCommand
+	 * @return filters 
+	 */
 	private static ModifiedSequentialFilter constructFilterFromSubCommand (String subCommand){
 		String[] commandAndParam = subCommand.split(" ");
 
@@ -77,6 +101,10 @@ public class SequentialCommandBuilder {
 		return null;
 	}
 
+	/**
+	 * This method links all the filters together
+	 * @param filters
+	 */
 	private static void linkFilters(List<ModifiedSequentialFilter> filters){
 		Iterator<ModifiedSequentialFilter> iterator = filters.iterator();
 		ModifiedSequentialFilter prev = null;
