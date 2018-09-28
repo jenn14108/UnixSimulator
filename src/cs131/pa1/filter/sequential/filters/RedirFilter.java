@@ -3,26 +3,28 @@ package cs131.pa1.filter.sequential.filters;
 import java.util.LinkedList;
 import java.io.*;
 import cs131.pa1.filter.Message;
+import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
-public class RedirFilter extends SequentialFilter {
-	private String[] components;
-	private String name;
+public class RedirFilter extends ModifiedSequentialFilter {
+	
 	private String newFileName;
 
 	public RedirFilter(String subCommand) {
 		components = subCommand.split(" ");
 		input = new LinkedList<>();
-		this.name = components[0];
+		cont = false;
 	}
 	
 	
 	@Override
 	public void process() {
 		if (input.isEmpty()) {
-			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
+			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0]));
+			return;
 		} else if (components.length < 2) {
-			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.name));
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(components[0]));
+			return;
 		} else {
 			newFileName = components[1];
 			try {

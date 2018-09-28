@@ -3,17 +3,18 @@ package cs131.pa1.filter.sequential.filters;
 import java.util.LinkedList;
 
 import cs131.pa1.filter.Message;
+import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
-public class WcFilter extends SequentialFilter{
+public class WcFilter extends ModifiedSequentialFilter{
 	private int lines;
 	private int words;
 	private int characters; 
-	private String[] components;
 
 	public WcFilter(String subCommand) {
 		output = new LinkedList<>();
 		input = new LinkedList<>();
+		cont = false;
 		this.components = subCommand.split(" ");	
 		this.lines = 0;
 		this.words = 0;
@@ -28,6 +29,7 @@ public class WcFilter extends SequentialFilter{
 		}
 		super.process();
 		output.add(this.lines + " " + this.words + " " + this.characters);
+		cont = true;
 	}
 	
 	@Override

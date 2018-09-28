@@ -7,12 +7,12 @@ import cs131.pa1.filter.*;
 import cs131.pa1.filter.sequential.*;
 
 
-public class LsFilter extends SequentialFilter{
-	private String[] components; 
+public class LsFilter extends ModifiedSequentialFilter{
 	
 	public LsFilter(String subCommand) {
 		components = subCommand.split(" "); 
 		output = new LinkedList<>();
+		cont = false;
 	}
 	
 	
@@ -26,7 +26,8 @@ public class LsFilter extends SequentialFilter{
 		File files = new File(SequentialREPL.currentWorkingDirectory);
 		for(String file: files.list()) {
 			output.add(file);
-		}	
+		}
+		cont = true;
 	}
 
 	

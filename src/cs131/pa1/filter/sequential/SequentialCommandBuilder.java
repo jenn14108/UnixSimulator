@@ -5,20 +5,23 @@ import cs131.pa1.filter.sequential.filters.*;
 
 
 public class SequentialCommandBuilder {
-
-	public static List<SequentialFilter> createFiltersFromCommand(String command){
-		List<SequentialFilter> filters = new ArrayList<>();
-		SequentialFilter redFilter = null; 
+	private static String newCommand;
+	public static List<ModifiedSequentialFilter> createFiltersFromCommand(String command){
+		newCommand = command;
+		List<ModifiedSequentialFilter> filters = new ArrayList<>();
+		ModifiedSequentialFilter redFilter = null; 
+		
 		if (command.contains(">")) {
 			String redir = determineRedirectFilter(command);
 			redFilter = removeRedirectFilter(command, redir);
 		}
-		String[] commandSplit = command.split("\\|");
+		
+		String[] commandSplit = newCommand.split("\\|");
 		for (String inputStr : commandSplit) {
 			inputStr = inputStr.trim();
 			String[] actualCommand = inputStr.split(" ");
 			String c = actualCommand[0];
-			if (!(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
+			if (c.length() != 0 && !(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
 					c.equals("cat") || c.equals("grep") || c.equals("wc") ||
 					c.equals("uniq"))){
 				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(inputStr));
@@ -37,13 +40,13 @@ public class SequentialCommandBuilder {
 		return command.substring(command.lastIndexOf(">"), command.length());
 	}
 
-	private static SequentialFilter removeRedirectFilter(String command, String redir){
-		command = command.substring(0, command.lastIndexOf(">"));
+	private static ModifiedSequentialFilter removeRedirectFilter(String command, String redir){
+		newCommand = command.substring(0, command.lastIndexOf(">"));
 		return new RedirFilter(redir);
 	}
 
 
-	private static SequentialFilter constructFilterFromSubCommand (String subCommand){
+	private static ModifiedSequentialFilter constructFilterFromSubCommand (String subCommand){
 		String[] commandAndParam = subCommand.split(" ");
 
 		switch(commandAndParam[0]) {
@@ -67,8 +70,8 @@ public class SequentialCommandBuilder {
 		return null;
 	}
 
-	private static void linkFilters(List<SequentialFilter> filters){
-		Iterator<SequentialFilter> iterator = filters.iterator();
+	private static void linkFilters(List<ModifiedSequentialFilter> filters){
+		Iterator<ModifiedSequentialFilter> iterator = filters.iterator();
 		SequentialFilter prev = null;
 
 		if(iterator.hasNext()) {

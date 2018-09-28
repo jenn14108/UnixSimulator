@@ -71,7 +71,6 @@ public class TextProcessingTests {
 	}
 	
 	// Basic test for wc (word count)
-	
 	@Test
 	public void testWcFizzBuzz(){
 		testInput("cat fizz-buzz-10000.txt | wc\nexit");

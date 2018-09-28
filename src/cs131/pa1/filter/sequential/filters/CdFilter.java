@@ -14,18 +14,16 @@ import cs131.pa1.filter.sequential.SequentialFilter;
 import cs131.pa1.filter.sequential.SequentialREPL;
 
 
-public class CdFilter extends SequentialFilter {
+public class CdFilter extends ModifiedSequentialFilter {
 
-	private String[] components;
-	private String name;
 	private String newDirc;
 	private String currDirc = SequentialREPL.currentWorkingDirectory;
 	private String subCommand;
 	
 	public CdFilter(String subCommand) {
 		this.components = subCommand.split(" ");	
-		this.name = components[0];
 		this.subCommand = subCommand;
+		cont = false;
 	}
 	
 	@Override
@@ -44,6 +42,7 @@ public class CdFilter extends SequentialFilter {
 
 		newDirc = components[1];
 		if (newDirc.equals(".")) {
+			cont = true;
 			return;
 		} else if (newDirc.equals("..")) {
 			int firstSepr = currDirc.indexOf(Filter.FILE_SEPARATOR);
@@ -52,6 +51,7 @@ public class CdFilter extends SequentialFilter {
 			if(!currDirc.equals(Filter.FILE_SEPARATOR)){
 				SequentialREPL.currentWorkingDirectory = currDirc.substring(0, lastSepr); 
 			}
+			cont = true;
 			return;
 		}
 		
@@ -59,11 +59,14 @@ public class CdFilter extends SequentialFilter {
 		File dirc = new File(currDirc);
 		
 		if (!dirc.isDirectory()) {
-			System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(newDirc));
+			System.out.print(Message.DIRECTORY_NOT_FOUND.with_parameter(subCommand));
 			return;
 		}
 		SequentialREPL.currentWorkingDirectory = dirc.getAbsolutePath();
+		cont = true;
 	}
+	
+		
 
 
 	@Override

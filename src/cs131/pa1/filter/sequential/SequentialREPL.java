@@ -21,17 +21,24 @@ public class SequentialREPL {
 		while (!commands.equals("exit")) {
 			if (!commands.equals("")) {
 				//Make a new sequential filter
-				List<SequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
-				
+				List<ModifiedSequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
 				if (filters != null) {
-					for (SequentialFilter filter : filters) {
-						filter.process();
+					filters.get(0).process();
+					for (int i = 1; i < filters.size();i++) {
+						if(filters.get(i-1).cont && filters.get(i-1).output.size() != 0) {
+							filters.get(i).process();
+						} else {
+							filters = null;
+							break;
+						}
 					}
-					Queue<String> outputs = filters.get(filters.size()-1).output;
-						
-					if (outputs != null) {
-						for (String output: outputs) {
-							System.out.println(output);
+					
+					if(filters != null && filters.get(filters.size()-1).cont) {
+						Queue<String> outputs = filters.get(filters.size()-1).output;	
+						if (outputs != null) {
+							for (String output: outputs) {
+								System.out.println(output);
+							}
 						}
 					}
 				}

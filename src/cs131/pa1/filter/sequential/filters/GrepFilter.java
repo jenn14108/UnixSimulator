@@ -2,30 +2,32 @@ package cs131.pa1.filter.sequential.filters;
 import java.util.*;
 
 import cs131.pa1.filter.Message;
+import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
 /**
  * This class imitates the Grep command used in a shell 
  * @author Jenn
  */
-public class GrepFilter extends SequentialFilter{
+public class GrepFilter extends ModifiedSequentialFilter{
 	
-	private String name;
 	private String searchTerm;
+	private String subCommand;
 	
 	/*
 	 * Initializes a new instance of the grep filter with the 
 	 * appropriate search term
 	 */
 	public GrepFilter(String commandAndParam) {
+		this.subCommand = commandAndParam;
 		output = new LinkedList<>();
 		input = new LinkedList<>();
-		String[] splitCommandAndParam = commandAndParam.split(" ");
-		this.name = splitCommandAndParam[0];
-		if (splitCommandAndParam.length == 1) {
+		cont = false;
+		components = commandAndParam.split(" ");
+		if (components.length == 1) {
 			this.searchTerm = null;
 		} else {
-			this.searchTerm = splitCommandAndParam[1];
+			this.searchTerm = components[1];
 		}
 	}
 	
@@ -36,12 +38,13 @@ public class GrepFilter extends SequentialFilter{
 	 */
 	public void process() {
 		if (input.isEmpty()) {
-			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.name));
+			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.subCommand));
 		} else if (this.searchTerm == null) {
-			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.name));
+			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(this.subCommand));
 		} else {
 			super.process();
 		}
+		cont = true;	
 	}
 	
 	
