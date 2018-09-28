@@ -5,17 +5,14 @@ import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
-/**
- * This class imitates the Grep command used in a shell 
- * @author Jenn
- */
+
 public class GrepFilter extends ModifiedSequentialFilter{
 	
 	private String searchTerm;
 	
 	/*
 	 * Initializes a new instance of the grep filter with the 
-	 * appropriate search term
+	 * appropriate search term by splitting up the command and parameter
 	 */
 	public GrepFilter(String commandAndParam) {
 		this.subCommand = commandAndParam;
@@ -23,6 +20,7 @@ public class GrepFilter extends ModifiedSequentialFilter{
 		input = new LinkedList<>();
 		cont = false;
 		components = commandAndParam.split(" ");
+		//if components = 1 that means that no parameter was given
 		if (components.length == 1) {
 			this.searchTerm = null;
 		} else {
@@ -33,7 +31,7 @@ public class GrepFilter extends ModifiedSequentialFilter{
 	@Override 
 	/**
 	 * This method overrides process() to print out the appropriate 
-	 * error message if there is no input. 
+	 * error message if there is no input. If no error, contineu with process()
 	 */
 	public void process() {
 		if (input.isEmpty()) {
@@ -46,7 +44,10 @@ public class GrepFilter extends ModifiedSequentialFilter{
 		cont = true;	
 	}
 	
-	
+	/**
+	 * processLine checks whether a given line in the file 
+	 * contains the searchTerm, if it does, add to output
+	 */
 	@Override
 	protected String processLine(String line) {
 		//if input line contains the searchterm - return the line
