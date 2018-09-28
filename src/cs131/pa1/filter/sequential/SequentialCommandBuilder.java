@@ -13,29 +13,26 @@ public class SequentialCommandBuilder {
 		
 		if (command.contains(">")) {
 			String redir = determineRedirectFilter(command);
-			redFilter = removeRedirectFilter(command, redir);
+			command = removeRedirectFilter(command);
+			redFilter = createRedirectFilter(redir);
 		}
 		
-		String[] commandSplit = newCommand.split("\\|");
-		for (String inputStr : commandSplit) {
-			inputStr = inputStr.trim();
-			String[] actualCommand = inputStr.split(" ");
-			String c = actualCommand[0];
-			if (c.length() != 0 && !(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
-					c.equals("cat") || c.equals("grep") || c.equals("wc") ||
-					c.equals("uniq"))){
-				System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(inputStr));
-				return null;
+		String[] commandSplit = command.split("\\|");
+		if (!(commandSplit[0].equals(""))) {
+			for (String inputStr : commandSplit) {
+				inputStr = inputStr.trim();
+				String[] actualCommand = inputStr.split(" ");
+				String c = actualCommand[0];
+				if (c.length() != 0 && !(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
+						c.equals("cat") || c.equals("grep") || c.equals("wc") ||
+						c.equals("uniq"))){
+					System.out.print(Message.COMMAND_NOT_FOUND.with_parameter(inputStr));
+					return null;
+				}
+				filters.add(constructFilterFromSubCommand(inputStr));
 			}
-			filters.add(constructFilterFromSubCommand(inputStr));
 		}
 		
-		if(filters == null || filters.size() == 0) {
-			if (redFilter != null) {
-				filters.add(redFilter);
-				return filters;
-			}
-		}
 		if (redFilter != null) {
 			filters.add(redFilter);
 		}
@@ -47,8 +44,11 @@ public class SequentialCommandBuilder {
 		return command.substring(command.lastIndexOf(">"), command.length());
 	}
 
-	private static ModifiedSequentialFilter removeRedirectFilter(String command, String redir){
-		newCommand = command.substring(0, command.lastIndexOf(">"));
+	private static String removeRedirectFilter(String command){
+		return command.substring(0, command.lastIndexOf(">"));
+	}
+	
+	private static ModifiedSequentialFilter createRedirectFilter(String redir) {
 		return new RedirFilter(redir);
 	}
 
@@ -83,10 +83,8 @@ public class SequentialCommandBuilder {
 
 		if(iterator.hasNext()) {
 			prev = iterator.next();
-			//System.out.println("Outside whileloop prev: " + prev);
 			while(iterator.hasNext()) {
 				ModifiedSequentialFilter curr = iterator.next();
-				System.out.println(prev);
 				if (prev != null) prev.setNextFilter(curr);
 				if (curr != null) curr.setPrevFilter(prev);
 				prev = curr;
