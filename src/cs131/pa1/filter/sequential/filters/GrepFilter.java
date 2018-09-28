@@ -5,7 +5,10 @@ import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
-
+/**
+ * This class extends the ModifiedSequentialFilter class and implements the Grep Command
+ * it reads lines from piped input, and only output lines with a given search string
+ */
 public class GrepFilter extends ModifiedSequentialFilter{
 	
 	private String searchTerm;

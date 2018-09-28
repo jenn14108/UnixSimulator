@@ -5,6 +5,10 @@ import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 import java.util.*;
 
+/**
+ * This class extends the ModifiedSequentialFilter class and implements the Uniq Command
+ * it filters out duplicate lines from the input
+ */
 public class UniqFilter extends ModifiedSequentialFilter{
 
 	private TreeSet<String> checker = new TreeSet<>();

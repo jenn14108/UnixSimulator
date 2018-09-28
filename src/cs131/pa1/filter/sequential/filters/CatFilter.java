@@ -6,6 +6,10 @@ import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.*;
 import java.io.*;
 
+/**
+ * This class extends the ModifiedSequentialFilter class and implements the Cat Command
+ * Cat outputs the entirety of one or more files to the output message queue
+ */
 public class CatFilter extends ModifiedSequentialFilter {
 	
 	private String[] files;
