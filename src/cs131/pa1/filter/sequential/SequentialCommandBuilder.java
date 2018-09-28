@@ -29,6 +29,13 @@ public class SequentialCommandBuilder {
 			}
 			filters.add(constructFilterFromSubCommand(inputStr));
 		}
+		
+		if(filters == null || filters.size() == 0) {
+			if (redFilter != null) {
+				filters.add(redFilter);
+				return filters;
+			}
+		}
 		if (redFilter != null) {
 			filters.add(redFilter);
 		}
@@ -72,12 +79,14 @@ public class SequentialCommandBuilder {
 
 	private static void linkFilters(List<ModifiedSequentialFilter> filters){
 		Iterator<ModifiedSequentialFilter> iterator = filters.iterator();
-		SequentialFilter prev = null;
+		ModifiedSequentialFilter prev = null;
 
 		if(iterator.hasNext()) {
 			prev = iterator.next();
+			//System.out.println("Outside whileloop prev: " + prev);
 			while(iterator.hasNext()) {
-				SequentialFilter curr = iterator.next();
+				ModifiedSequentialFilter curr = iterator.next();
+				System.out.println(prev);
 				if (prev != null) prev.setNextFilter(curr);
 				if (curr != null) curr.setPrevFilter(prev);
 				prev = curr;

@@ -40,7 +40,7 @@ public class CdFilter extends ModifiedSequentialFilter {
 			return; 
 		}
 
-		newDirc = components[1];
+		newDirc = components[1].trim();
 		if (newDirc.equals(".")) {
 			cont = true;
 			return;

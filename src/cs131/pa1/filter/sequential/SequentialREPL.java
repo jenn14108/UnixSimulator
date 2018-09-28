@@ -26,14 +26,16 @@ public class SequentialREPL {
 					filters.get(0).process();
 					for (int i = 1; i < filters.size();i++) {
 						if(filters.get(i-1).cont && filters.get(i-1).output.size() != 0) {
+							
 							filters.get(i).process();
+							
 						} else {
 							filters = null;
 							break;
 						}
 					}
 					
-					if(filters != null && filters.get(filters.size()-1).cont) {
+					if(filters != null && filters.get(filters.size()-1).cont && filters.get(filters.size()-1).contForCat) {
 						Queue<String> outputs = filters.get(filters.size()-1).output;	
 						if (outputs != null) {
 							for (String output: outputs) {
@@ -47,7 +49,6 @@ public class SequentialREPL {
 			//After completing current commands, ask for a new set of commands
 			System.out.print(Message.NEWCOMMAND.toString());
 			commands = input.nextLine();
-			
 		}
 		
 		//user commands to exit shell 

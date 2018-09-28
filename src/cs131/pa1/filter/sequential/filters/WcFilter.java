@@ -26,9 +26,13 @@ public class WcFilter extends ModifiedSequentialFilter{
 		if (input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(this.components[0]));
 			return;
+		} else if (input.size()==1 && input.poll().equals("noContent")) {
+			output.add("0 0 0");
+		} else {
+			super.process();
+			output.add(this.lines + " " + this.words + " " + this.characters);
 		}
-		super.process();
-		output.add(this.lines + " " + this.words + " " + this.characters);
+
 		cont = true;
 	}
 	

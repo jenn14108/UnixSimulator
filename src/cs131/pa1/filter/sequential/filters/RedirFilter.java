@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.io.*;
 import cs131.pa1.filter.Message;
 import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
-import cs131.pa1.filter.sequential.SequentialFilter;
+import cs131.pa1.filter.sequential.SequentialREPL;
 
 public class RedirFilter extends ModifiedSequentialFilter {
 	
@@ -16,30 +16,33 @@ public class RedirFilter extends ModifiedSequentialFilter {
 		cont = false;
 	}
 	
-	
 	@Override
 	public void process() {
-		if (input.isEmpty()) {
+		if (input == null || input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0]));
 			return;
 		} else if (components.length < 2) {
 			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(components[0]));
 			return;
-		} else {
+		}  else {
 			newFileName = components[1];
+			File currDir = new File(SequentialREPL.currentWorkingDirectory);
 			try {
-				PrintStream out = new PrintStream(new File(newFileName));
+				FileWriter out = new FileWriter(new File(currDir,newFileName));
 				writeToOutPut(out);
-			} catch (FileNotFoundException e) {
+				out.close();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		if(components[1].contains("|")) {
+			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(components[0]+" " +components[1].substring(0, components[1].indexOf('|'))));
+		}
 	}
 	
-	private void writeToOutPut(PrintStream out) {
+	private void writeToOutPut(FileWriter out) throws IOException {
 		for(String line: input) {
-			System.out.println(line);
-			out.println(line);
+			out.write(line);
 		}
 	}
 	

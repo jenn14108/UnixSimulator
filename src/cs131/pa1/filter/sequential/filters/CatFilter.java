@@ -51,6 +51,9 @@ public class CatFilter extends ModifiedSequentialFilter {
 				}
 			}
 		}
+		if (output.size() == 0) {
+			output.add("noContent");
+		}
 		cont = true;
 	}
 
