@@ -12,7 +12,6 @@ import cs131.pa1.filter.sequential.SequentialFilter;
 public class GrepFilter extends ModifiedSequentialFilter{
 	
 	private String searchTerm;
-	private String subCommand;
 	
 	/*
 	 * Initializes a new instance of the grep filter with the 

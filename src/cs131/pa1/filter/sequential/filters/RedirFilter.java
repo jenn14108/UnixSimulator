@@ -53,7 +53,6 @@ public class RedirFilter extends ModifiedSequentialFilter {
 	private void writeToOutPut(FileWriter out) throws IOException {
 		for(String line: input) {
 			out.write(line + "\n");
-
 		}
 	}
 	

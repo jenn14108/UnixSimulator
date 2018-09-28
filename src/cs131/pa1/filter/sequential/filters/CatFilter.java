@@ -9,7 +9,7 @@ import java.io.*;
 public class CatFilter extends ModifiedSequentialFilter {
 	
 	private String[] files;
-	private String subCommand;
+	
 	
 	public CatFilter(String commandAndParam) {
 		input = new LinkedList<>();

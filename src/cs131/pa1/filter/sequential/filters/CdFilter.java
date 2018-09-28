@@ -18,7 +18,6 @@ public class CdFilter extends ModifiedSequentialFilter {
 
 	private String newDirc;
 	private String currDirc = SequentialREPL.currentWorkingDirectory;
-	private String subCommand;
 	
 	public CdFilter(String subCommand) {
 		this.components = subCommand.split(" ");	
