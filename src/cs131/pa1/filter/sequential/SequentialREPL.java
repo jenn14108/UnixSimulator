@@ -18,6 +18,7 @@ public class SequentialREPL {
 		
 		//shell runs until user command equates to "exit" 
 		while (!commands.equals("exit")) {
+			
 			if (!commands.equals("")) {
 				//Make a new sequential filter
 				List<ModifiedSequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
@@ -25,7 +26,9 @@ public class SequentialREPL {
 				//If error was thrown from the last command, cease to continue onto the next filter(s). 
 				if (filters != null) {
 					filters.get(0).process();
+					
 					for (int i = 1; i < filters.size();i++) {
+						
 						if(filters.get(i-1).cont && filters.get(i-1).output.size() != 0) {
 							filters.get(i).process();
 						} else {
@@ -38,7 +41,9 @@ public class SequentialREPL {
 					//and CAT didn't throw an error
 					if(filters != null && filters.get(filters.size()-1).cont && filters.get(filters.size()-1).contForCat) {
 						Queue<String> outputs = filters.get(filters.size()-1).output;	
+						
 						if (outputs != null) {
+							
 							for (String output: outputs) {
 								System.out.println(output);
 							}

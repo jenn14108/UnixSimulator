@@ -6,6 +6,7 @@ import cs131.pa1.filter.sequential.filters.*;
 
 public class SequentialCommandBuilder {
 	private static String newCommand;
+	
 	public static List<ModifiedSequentialFilter> createFiltersFromCommand(String command){
 		newCommand = command;
 		List<ModifiedSequentialFilter> filters = new ArrayList<>();
@@ -49,8 +50,7 @@ public class SequentialCommandBuilder {
 	 * This method determines the chunk of string that contains 
 	 * the command and parameters for redirect
 	 * @param the full command string typed in by the user
-	 * @return the string that contains the command and parameters
-	 * for redirect
+	 * @return the string that contains the command and parameters for redirect
 	 */
 	private static String determineRedirectFilter(String command){
 		return command.substring(command.lastIndexOf(">"), command.length());
