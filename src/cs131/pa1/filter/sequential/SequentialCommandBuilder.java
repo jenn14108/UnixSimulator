@@ -21,10 +21,12 @@ public class SequentialCommandBuilder {
 		
 		String[] commandSplit = command.split("\\|");
 		if (!(commandSplit[0].equals(""))) {
+			
 			for (String inputStr : commandSplit) {
 				inputStr = inputStr.trim();
 				String[] actualCommand = inputStr.split(" ");
 				String c = actualCommand[0];
+				
 				//If none of the valid commands are matched to what was entered by the user - throw error
 				if (c.length() != 0 && !(c.equals("pwd") || c.equals("ls") || c.equals("cd") ||
 						c.equals("cat") || c.equals("grep") || c.equals("wc") ||

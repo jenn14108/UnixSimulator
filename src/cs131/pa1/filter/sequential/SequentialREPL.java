@@ -22,6 +22,7 @@ public class SequentialREPL {
 			if (!commands.equals("")) {
 				//Make a new sequential filter
 				List<ModifiedSequentialFilter> filters = SequentialCommandBuilder.createFiltersFromCommand(commands);
+				
 				//If there is at least one command, process it first, then see whether an error is thrown, 
 				//If error was thrown from the last command, cease to continue onto the next filter(s). 
 				if (filters != null) {
