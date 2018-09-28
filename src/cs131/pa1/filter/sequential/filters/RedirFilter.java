@@ -19,6 +19,9 @@ public class RedirFilter extends ModifiedSequentialFilter {
 	
 	@Override
 	public void process() {
+		
+		boolean illegal = false;
+		
 		if (input == null || input.isEmpty()) {
 			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0] + " " + components[1]));
 			return;
@@ -26,7 +29,12 @@ public class RedirFilter extends ModifiedSequentialFilter {
 			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(components[0]));
 			return;
 		}  else {
-			newFileName = components[1];
+			if(components[1].contains("|")) {
+				newFileName = components[1].substring(0, components[1].indexOf('|')); 
+				illegal = true;
+			} else {
+				newFileName = components[1];
+			}
 			File currDir = new File(SequentialREPL.currentWorkingDirectory);
 			try {
 				FileWriter out = new FileWriter(new File(currDir,newFileName));
@@ -36,8 +44,9 @@ public class RedirFilter extends ModifiedSequentialFilter {
 				e.printStackTrace();
 			}
 		}
-		if(components[1].contains("|")) {
-			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(components[0]+" " +components[1].substring(0, components[1].indexOf('|'))));
+		
+		if(illegal) {
+			System.out.print(Message.CANNOT_HAVE_OUTPUT.with_parameter(components[0]+" " +newFileName));
 		}
 	}
 	
