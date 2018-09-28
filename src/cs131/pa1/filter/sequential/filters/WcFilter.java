@@ -7,7 +7,6 @@ import cs131.pa1.filter.sequential.ModifiedSequentialFilter;
 import cs131.pa1.filter.sequential.SequentialFilter;
 
 /**
- * @author Julia
  * This class extends the ModifiedSequentialFilter class and implements the Wc Command
  * It reads lines from piped input and output the number of lines, words and characters, separated with space
  */
@@ -17,7 +16,8 @@ public class WcFilter extends ModifiedSequentialFilter{
 	private int characters; 
 
 	/**
-	 * This is the constructor for the WcFilter
+	 * This is the Constructor of the WcFilter
+	 * @param subCommand takes in the command name String
 	 */
 	public WcFilter(String subCommand) {
 		output = new LinkedList<>();
