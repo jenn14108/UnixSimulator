@@ -36,8 +36,18 @@ public class RedirFilter extends ModifiedSequentialFilter {
 		
 		//prints error when the input of the Filter is empty
 		if (input == null || input.isEmpty()) {
-			System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0] + " " + components[1]));
+			//This handles the case in which the user types in the command and input without space
+			//separation. i.e <hello.txt or <hello.txt|wc
+			if (components.length == 1) {
+				if (components[0].contains("|")) {
+					components[0] = components[0].substring(0, components[0].lastIndexOf('|'));
+				}
+			System.out.println(Message.REQUIRES_INPUT.with_parameter(components[0]));
 			return;
+			} else {
+				System.out.print(Message.REQUIRES_INPUT.with_parameter(components[0] + " " + components[1]));
+				return;
+			}
 		//prints error if the Filter does not have parameters
 		} else if (components.length < 2) {
 			System.out.print(Message.REQUIRES_PARAMETER.with_parameter(components[0]));
